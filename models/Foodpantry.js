@@ -1,6 +1,6 @@
 const mongoose = require(`mongoose`);
 
-const Foodpantry = new mongoose.Schema({
+const FoodpantrySchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'Please add a name'],
@@ -65,4 +65,4 @@ const Foodpantry = new mongoose.Schema({
     }
 }); 
 
-module.exports = Foodpantry
+module.exports = mongoose.model('Foodpantry', FoodpantrySchema);
