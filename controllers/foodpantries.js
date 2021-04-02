@@ -1,3 +1,4 @@
+const Foodpantry = require(`../models/Foodpantry`)
 
 // @desc    Get all Foodpantries
 // @route   GET /api/v1/bootcamps
@@ -17,6 +18,7 @@ exports.getFoodpantry = (req, res, next) => {
 // @route   POST /api/v1/bootcamps
 // @access  Private
 exports.createFoodpantry = (req, res, next) => {
+    console.log(req.body)
     res.status(200).json({ success: true, msg: 'Create new pantry' })
 }
 

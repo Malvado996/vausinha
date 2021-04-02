@@ -1,6 +1,6 @@
 const mongoose = require(`mongoose`);
 
-const FoodpantrySchema = new mongoose.Schema({
+const Foodpantry = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'Please add a name'],
@@ -64,3 +64,5 @@ const FoodpantrySchema = new mongoose.Schema({
         default: Date.now
     }
 }); 
+
+module.exports = Foodpantry
