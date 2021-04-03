@@ -1,24 +1,20 @@
 const ErrorResponse = require(`../utils/errorResponse`)
+const asyncHandler = require(`../middleware/async`)
 const Foodpantry = require(`../models/Foodpantry`)
 
 // @desc    Get all Foodpantries
 // @route   GET /api/v1/bootcamps
 // @access  Public
-exports.getFoodpantries = async (req, res, next) => {
-    try {
+exports.getFoodpantries = asyncHandler(async (req, res, next) => {
         const foodpantries = await Foodpantry.find();
 
-        res.status(200).json({ success: true, data: foodpantries });
-    } catch (error) {
-        next(error)
-    }
-}
+        res.status(200).json({ success: true, count: foodpantries.length, data: foodpantries });
+});
 
 // @desc    Get single Foodpantry
 // @route   GET /api/v1/bootcamps/:id
 // @access  Public
-exports.getFoodpantry = async (req, res, next) => {
-    try {
+exports.getFoodpantry = asyncHandler(async (req, res, next) => {
         const foodpantry = await Foodpantry.findById(req.params.id);
 
         if(!foodpantry) {
@@ -26,32 +22,21 @@ exports.getFoodpantry = async (req, res, next) => {
         }
 
         res.status(200).json({ success: true, data: foodpantry })
-    } catch (error) {
-        // res.status(400).json({ success: false })
-        next(error)
-    }
-}
+})
 
 // @desc    Create Foodpantry
 // @route   POST /api/v1/bootcamps
 // @access  Private
-exports.createFoodpantry = async (req, res, next) => {
-   
-   try {
+exports.createFoodpantry = asyncHandler(async (req, res, next) => {
         const foodpantry = await Foodpantry.create(req.body);
 
-        res.status(201).json({ success: true, data: foodpantry });
-   } catch (err) {
-    next(error)
-   }
-   
-}
+        res.status(201).json({ success: true, data: foodpantry }); 
+})
 
 // @desc    Update Foodpantry
 // @route   PUT /api/v1/bootcamps/:id
 // @access  Private
-exports.updateFoodpantry = async (req, res, next) => {
-    try {
+exports.updateFoodpantry = asyncHandler(async (req, res, next) => {
         const foodpantry = await Foodpantry.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true
@@ -62,16 +47,12 @@ exports.updateFoodpantry = async (req, res, next) => {
         }
 
         res.status(200).json({ success: true, data: foodpantry })
-    } catch (error) {
-        next(error)
-    }
-}
+})
 
 // @desc    Delete Foodpantry
 // @route   DELETE /api/v1/bootcamps/:id
 // @access  Private
-exports.deleteFoodpantry = async (req, res, next) => {
-    try {
+exports.deleteFoodpantry = asyncHandler(async (req, res, next) => {
         const foodpantry = await Foodpantry.findByIdAndDelete(req.params.id)
 
         if(!foodpantry) {
@@ -79,7 +60,4 @@ exports.deleteFoodpantry = async (req, res, next) => {
         }
 
         res.status(200).json({ success: true, data: {} })
-    } catch (error) {
-        next(error)
-    }
-}
+})
