@@ -18,12 +18,18 @@ exports.getFoodpantry = (req, res, next) => {
 // @route   POST /api/v1/bootcamps
 // @access  Private
 exports.createFoodpantry = async (req, res, next) => {
-   const foodpantry = await Foodpantry.create(req.body);
+   
+   try {
+        const foodpantry = await Foodpantry.create(req.body);
 
-   res.status(201).json({
-       success: true,
-       data: foodpantry
-   });
+        res.status(201).json({
+            success: true,
+            data: foodpantry
+        });
+   } catch (err) {
+        res.status(400).json({ success: false });
+   }
+   
 }
 
 // @desc    Update Foodpantry
