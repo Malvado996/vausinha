@@ -1,3 +1,4 @@
+const ErrorResponse = require(`../utils/errorResponse`)
 const Foodpantry = require(`../models/Foodpantry`)
 
 // @desc    Get all Foodpantries
@@ -9,7 +10,7 @@ exports.getFoodpantries = async (req, res, next) => {
 
         res.status(200).json({ success: true, data: foodpantries });
     } catch (error) {
-        res.status(400).json({ success: false });
+        next(error)
     }
 }
 
@@ -21,7 +22,7 @@ exports.getFoodpantry = async (req, res, next) => {
         const foodpantry = await Foodpantry.findById(req.params.id);
 
         if(!foodpantry) {
-            return res.status(400).json({ success: false })
+            return next(new ErrorResponse(`Foodpantry not found with ID of ${req.params.id}`, 404))
         }
 
         res.status(200).json({ success: true, data: foodpantry })
@@ -41,7 +42,7 @@ exports.createFoodpantry = async (req, res, next) => {
 
         res.status(201).json({ success: true, data: foodpantry });
    } catch (err) {
-        res.status(400).json({ success: false });
+    next(error)
    }
    
 }
@@ -57,12 +58,12 @@ exports.updateFoodpantry = async (req, res, next) => {
         })
 
         if(!foodpantry) {
-            return res.status(400).json({ success: false })
+            return next(new ErrorResponse(`Foodpantry not found with ID of ${req.params.id}`, 404))
         }
 
         res.status(200).json({ success: true, data: foodpantry })
     } catch (error) {
-        res.status(400).json({ success: false, error: error })
+        next(error)
     }
 }
 
@@ -74,11 +75,11 @@ exports.deleteFoodpantry = async (req, res, next) => {
         const foodpantry = await Foodpantry.findByIdAndDelete(req.params.id)
 
         if(!foodpantry) {
-            return res.status(400).json({ success: false })
+            return next(new ErrorResponse(`Foodpantry not found with ID of ${req.params.id}`, 404))
         }
 
         res.status(200).json({ success: true, data: {} })
     } catch (error) {
-        res.status(400).json({ success: false, error: error })
+        next(error)
     }
 }
