@@ -7,7 +7,7 @@ class App extends React.Component {
   componentDidMount() {
     fetch("/api/v1/foodpantries")
     .then(response => response.json())
-    .then(data => console.log(data));
+    .then(data => console.log(data.data[0]));
   }
 
   
