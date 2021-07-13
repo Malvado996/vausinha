@@ -65,6 +65,9 @@ const FoodpantrySchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    inventory: {
+        type: Array
+    }
 
 }); 
 
