@@ -43,3 +43,12 @@ process.on('unhandledRejection', (err, promise) => {
     // Close server & exit process
     server.close(() => process.exit(1));
 })
+
+
+
+// // Handle unhandled promise rejections
+// process.on('unhandledRejection', (err, promise) => {
+//     console.log(`ERROR: ${err.message}`.brightYellow.bold);
+//     // Close server & exit process
+//     server.close(() => process.exit(1));
+// })
