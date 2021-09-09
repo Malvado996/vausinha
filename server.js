@@ -44,8 +44,28 @@ process.on('unhandledRejection', (err, promise) => {
     server.close(() => process.exit(1));
 })
 
+// const express = require('express');
+// const dotenv = require('dotenv');
+// const morgan = require('morgan');
+// const color = require(`colors`);
+// const errorHandler = require(`./middleware/error`);
+// const connectDB = require('./config/db');
 
-// / Dev logging middleware
+// // Load .env vars
+// dotenv.config({ path: './config/config.env' });
+
+// // Connect to MongoDB
+// connectDB();
+
+// // Route files
+// const foodpantries = require('./routes/foodpantries');
+
+// const app = express();
+
+// // Body parser
+// app.use(express.json());
+
+// // Dev logging middleware
 // if (process.env.NODE_ENV === 'development') {
 //     app.use(morgan('dev'));
 // }
