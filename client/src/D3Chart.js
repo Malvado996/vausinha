@@ -13,7 +13,13 @@ export default class D3Chart {
 
             const foo = [data.data[0].inventory];
             console.log(foo)
-            // console.log(foo.forEach(x => console.log(x)))
+           
+
+        })
+    }
+}
+
+ // console.log(foo.forEach(x => console.log(x)))
 
             // const y = d3.scaleLinear()
             //     .domain([0, 100])
@@ -34,7 +40,3 @@ export default class D3Chart {
             //     .attr("width", 50)
             //     .attr("height", d => y(d.quantity))
             //     .attr("fill", "red" )
-
-        })
-    }
-}
